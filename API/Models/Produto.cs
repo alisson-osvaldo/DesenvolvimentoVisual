@@ -10,6 +10,7 @@ namespace API.Models
 
 
         //prop + TAB =  public int MyProperty { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public double Preco{ get; set; }
         public string Descricao { get; set; }
