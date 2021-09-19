@@ -1,11 +1,27 @@
-###
+### Cadastrar um Produto
 POST https://localhost:5001/api/produto/Create
 Content-Type:  application/json
 
 {
-    "Nome" : "Bolinho",
+    "Nome" : "café",
     "Preco" : 3.5
 }
 
-###
+### Listar os Produtos
 GET https://localhost:5001/api/produto/list
+
+### Buscar um produto pelo ID
+GET https://localhost:5001/api/produto/getbyid/1
+
+###Deletar um produto
+DELETE  https://localhost:5001/api/produto/delete/bolinho
+
+### Alterar um produto
+PUT  https://localhost:5001/api/produto/update/1
+Content-Type: application/json
+
+{
+    "Id" : 1,
+    "Nome" : "Bolinho alterado",
+    "Preco" : 3.5
+}

@@ -28,6 +28,15 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           //Configurar a política de CORS para requisições de qualquer origem
+            services.AddCors(
+                options =>
+                {
+                    options.AddPolicy("CorsPolicy", builder => builder
+                        .AllowAnyOrigin());
+                }
+            );
+            
             //Configurar todas as injeções de dependencias do seu projeto
             services.AddDbContext<DataContext>(
                 options => options.UseInMemoryDatabase("database") //aqui vai a string de conecxão do nosso DB, como vamos ultilizar a memória apenas simulamos "database"
@@ -49,6 +58,8 @@ namespace API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 
