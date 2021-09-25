@@ -8,18 +8,6 @@ import { Produto } from './models/produto';
     templateUrl: "./app.component.html",
     styleUrls: [],
 })
-export class AppComponent implements OnInit{
-    //variavel global
-    produtos: Produto[] = [];
- //ddeve ser inicializada usando: = [] ou  produto! para informar q não vai ser inicializado
+export class AppComponent {
 
-    constructor(private service: ProdutoService) {}
-
-    ngOnInit(): void {
-        this.service.list().subscribe((produtos) => {
-            this.produtos = produtos;
-            console.log(produtos);
-        });
-
-    }
 }

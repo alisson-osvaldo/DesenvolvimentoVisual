@@ -3,7 +3,7 @@ POST https://localhost:5001/api/produto/Create
 Content-Type:  application/json
 
 {
-    "Nome" : "café",
+    "Nome" : "café é bão",
     "Preco" : 3.5
 }
 
@@ -14,10 +14,10 @@ GET https://localhost:5001/api/produto/list
 GET https://localhost:5001/api/produto/getbyid/1
 
 ###Deletar um produto
-DELETE  https://localhost:5001/api/produto/delete/bolinho
+DELETE  https://localhost:5001/api/produto/delete/café
 
 ### Alterar um produto
-PUT  https://localhost:5001/api/produto/update/1
+PUT  https://localhost:5001/api/produto/update
 Content-Type: application/json
 
 {

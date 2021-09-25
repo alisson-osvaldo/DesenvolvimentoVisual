@@ -33,10 +33,12 @@ namespace API
                 options =>
                 {
                     options.AddPolicy("CorsPolicy", builder => builder
-                        .AllowAnyOrigin());
+                        .AllowAnyOrigin( )
+                        .AllowAnyMethod( )
+                        .AllowAnyHeader( ));
                 }
             );
-            
+
             //Configurar todas as injeções de dependencias do seu projeto
             services.AddDbContext<DataContext>(
                 options => options.UseInMemoryDatabase("database") //aqui vai a string de conecxão do nosso DB, como vamos ultilizar a memória apenas simulamos "database"

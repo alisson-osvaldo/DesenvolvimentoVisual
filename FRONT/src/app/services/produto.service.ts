@@ -7,7 +7,7 @@ import { Produto } from '../models/produto';
   providedIn: 'root'
 })
 export class ProdutoService {
-    private baseUrl = "http://localhost:5000/api/produto"; //http sem o S 
+    private baseUrl = "http://localhost:5000/api/produto"; //http sem o S
 
     constructor(private http: HttpClient) { }
 
@@ -15,5 +15,9 @@ export class ProdutoService {
     list(): Observable<Produto[]> {
         return this.http.get<Produto[]>(`${this.baseUrl}/list`); //interpolação é com crase no typeScript
     }
-  
+
+    create(produto: Produto): Observable<Produto> {
+        return this.http.post<Produto>(`${this.baseUrl}/create`, produto);
+    }
+
 }
