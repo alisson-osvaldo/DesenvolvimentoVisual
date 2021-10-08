@@ -25,6 +25,7 @@ namespace API.Controllers
         //Métodos
         public IActionResult Create ([FromBody] Produto produto) //vem do Body
         {
+            Console.WriteLine($"Id da Categoria: {produto.Categoria.Id}");
             _context.Produtos.Add(produto);
             _context.SaveChanges( ); //salva todas as mudanças que foram feitas
             return Created("", produto);

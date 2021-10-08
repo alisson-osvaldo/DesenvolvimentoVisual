@@ -4,7 +4,12 @@ Content-Type:  application/json
 
 {
     "Nome" : "café é bão",
-    "Preco" : 3.5
+    "Preco" : 3.5,
+    "Quantidade" : 10,
+    "Descricao" : "Descrição aqui",
+    "Categoria" : {
+        "Id" : 123
+    }
 }
 
 ### Listar os Produtos
