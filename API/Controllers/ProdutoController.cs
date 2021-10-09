@@ -4,6 +4,7 @@ using System.Linq;
 using API.Data;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -25,7 +26,7 @@ namespace API.Controllers
         //Métodos
         public IActionResult Create ([FromBody] Produto produto) //vem do Body
         {
-            Console.WriteLine($"Id da Categoria: {produto.Categoria.Id}");
+            produto.Categoria = _context.Categorias.Find(produto.CategoriaId);
             _context.Produtos.Add(produto);
             _context.SaveChanges( ); //salva todas as mudanças que foram feitas
             return Created("", produto);
@@ -34,7 +35,10 @@ namespace API.Controllers
          // GET: api/produto/list
         [HttpGet] //Se não colocar nd ele é Get por padrão
         [Route("list")]
-        public IActionResult List( ) =>  Ok(_context.Produtos.ToList());
+        public IActionResult List( ) =>
+            Ok(_context.Produtos
+            .Include(p => p.Categoria) //para incluir Categoria
+            .ToList());
 
 
         //Get: api/produto/getbyid/1

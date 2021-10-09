@@ -15,6 +15,7 @@ namespace API.Models
          public int Quantidade { get; set; }
          public DateTime CriadoEm { get; set; } //Fazer using systen
          public Categoria Categoria { get; set; }
+         public int CategoriaId { get; set; }
 
         //é uma subscrita do q já exixte
          public override string ToString( ) =>

@@ -3,13 +3,11 @@ POST https://localhost:5001/api/produto/Create
 Content-Type:  application/json
 
 {
-    "Nome" : "café é bão",
+    "Nome" : "bolo",
     "Preco" : 3.5,
     "Quantidade" : 10,
     "Descricao" : "Descrição aqui",
-    "Categoria" : {
-        "Id" : 123
-    }
+    "CategoriaId" : 2
 }
 
 ### Listar os Produtos

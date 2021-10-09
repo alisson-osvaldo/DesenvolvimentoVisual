@@ -3,7 +3,7 @@ POST https://localhost:5001/api/categoria/Create
 Content-Type:  application/json
 
 {
-    "Nome" : "alimento"
+    "Nome" : "alimento 02"
 }
 
 ### Listar os categorias
