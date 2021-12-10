@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using API.Data;
 using API.Models;
@@ -10,47 +9,42 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/produto")]
-    public class ProdutoController : ControllerBase //fazendo com que o ProdutoController erde de ControllerBase(vai me da suporte da parte web)
+    public class ProdutoController : ControllerBase
     {
-
-        //Banco De Dados
-        private readonly DataContext _context; //para outro método poder receber o ( DataContext context) / readonly apenas para leitura
-        public ProdutoController( DataContext context)
+        private readonly DataContext _context;
+        public ProdutoController(DataContext context)
         {
             _context = context;
         }
 
-        //Create Cliente
-        [HttpPost]// POST: api/produto/Create
+        //POST: api/produto/create
+        [HttpPost]
         [Route("create")]
-        //Métodos
-        public IActionResult Create ([FromBody] Produto produto) //vem do Body
+        public IActionResult Create([FromBody] Produto produto)
         {
             produto.Categoria = _context.Categorias.Find(produto.CategoriaId);
             _context.Produtos.Add(produto);
-            _context.SaveChanges( ); //salva todas as mudanças que foram feitas
+            _context.SaveChanges();
             return Created("", produto);
         }
 
-         // GET: api/produto/list
-        [HttpGet] //Se não colocar nd ele é Get por padrão
+        //GET: api/produto/list
+        [HttpGet]
         [Route("list")]
-        public IActionResult List( ) =>
+        public IActionResult List() =>
             Ok(_context.Produtos
-            .Include(p => p.Categoria) //para incluir Categoria
+            .Include(p => p.Categoria)
             .ToList());
 
-
-        //Get: api/produto/getbyid/1
+        //GET: api/produto/getbyid/1
         [HttpGet]
-        [Route("getbyid/{id}")] //aqui coloca o que quiser para busca EX: ("getbyid/{name}")...
-        public IActionResult GetById([FromRoute] int id) //GetById( int ?) aqui tem q ir o mesmo q foi no Router
-        //FromRoute: vem da rota
-        //FromBody: vem do corpo
+        [Route("getbyid/{id}")]
+        public IActionResult GetById([FromRoute] int id)
         {
             Produto produto = _context.Produtos.Find(id);
-            if (produto == null){
-                return NotFound( );
+            if (produto == null)
+            {
+                return NotFound();
             }
             return Ok(produto);
         }
@@ -60,18 +54,19 @@ namespace API.Controllers
         [Route("delete/{name}")]
         public IActionResult Delete([FromRoute] string name)
         {
+            //Expressão lambda
             //Buscar um objeto na tabela de produtos com base no nome
-            Produto produto = _context.Produtos.FirstOrDefault(
-                produto => produto.Nome == name  //procurando produto pelo nome na lista, irá trazer o que achar primeiro
-            );
+            Produto produto = _context.Produtos.FirstOrDefault(produto => produto.Nome == name);
+
             if (produto == null)
             {
-                return NotFound( );
+                return NotFound();
             }
-            _context.Produtos.Remove(produto); //Deletar o produto encontrado
-            _context.SaveChanges( ); //Salvar
-            return Ok( );
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
+            return Ok(_context.Produtos.ToList());
         }
+
 
         //PUT: api/produto/update
         [HttpPut]
@@ -82,6 +77,5 @@ namespace API.Controllers
             _context.SaveChanges();
             return Ok(produto);
         }
-
     }
 }

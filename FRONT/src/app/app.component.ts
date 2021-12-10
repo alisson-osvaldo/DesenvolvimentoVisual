@@ -1,13 +1,8 @@
-import { ProdutoService } from './services/produto.service';
-import { Component, OnInit } from '@angular/core';
-import { Produto } from './models/produto';
-
+import { Component } from "@angular/core";
 
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
     styleUrls: [],
 })
-export class AppComponent {
-
-}
+export class AppComponent {}

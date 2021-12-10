@@ -1,23 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Produto } from '../models/produto';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { Produto } from "../models/produto";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: "root",
 })
 export class ProdutoService {
-    private baseUrl = "http://localhost:5000/api/produto"; //http sem o S
+    private baseUrl = "http://localhost:5000/api/produto";
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
 
-    //Métodos
     list(): Observable<Produto[]> {
-        return this.http.get<Produto[]>(`${this.baseUrl}/list`); //interpolação é com crase no typeScript
+        return this.http.get<Produto[]>(`${this.baseUrl}/list`);
     }
-
     create(produto: Produto): Observable<Produto> {
         return this.http.post<Produto>(`${this.baseUrl}/create`, produto);
     }
-
 }

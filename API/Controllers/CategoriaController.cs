@@ -9,26 +9,26 @@ namespace API.Controllers
     [Route("api/categoria")]
     public class CategoriaController : ControllerBase
     {
-        private readonly DataContext _context; //para outro método poder receber o ( DataContext context) / readonly apenas para leitura
-        public CategoriaController( DataContext context)
+        private readonly DataContext _context;
+        public CategoriaController(DataContext context)
         {
             _context = context;
         }
 
-        [HttpPost]// POST: api/categoria/Create
+        //POST: api/categoria/create
+        [HttpPost]
         [Route("create")]
-        //Métodos
-        public IActionResult Create ([FromBody] Categoria categoria) //vem do Body
+        public IActionResult Create([FromBody] Categoria categoria)
         {
             _context.Categorias.Add(categoria);
-            _context.SaveChanges( ); //salva todas as mudanças que foram feitas
+            _context.SaveChanges();
             return Created("", categoria);
         }
 
-         // GET: api/categoria/list
+        //GET: api/categoria/list
         [HttpGet]
         [Route("list")]
-        public IActionResult List( ) =>  Ok(_context.Categorias.ToList());
+        public IActionResult List() => Ok(_context.Categorias.ToList());
 
     }
 }
